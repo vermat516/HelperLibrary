@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.beingteach.universalhelper">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application>
-        <activity android:name=".MainUniversalUpdateActivity"></activity>
+        <activity android:name=".MainUniversalUpdateActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

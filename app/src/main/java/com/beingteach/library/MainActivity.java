@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new UniversalHelper(MainActivity.this).updateApp();
+        new UniversalHelper(MainActivity.this).updateApp(false);
     }
 }

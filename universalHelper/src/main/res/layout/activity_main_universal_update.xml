@@ -10,8 +10,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
-        android:visibility="gone"
         android:layout_margin="10dp"
+        android:id="@+id/ivCloseActivity"
         android:background="@drawable/ic_close"
         android:backgroundTint="@android:color/black" />
 

@@ -19,6 +19,7 @@ import java.io.IOException;
 
 public class UniversalHelper {
     public static String currentVersion = "";
+    boolean isForceUpdate;
     public static Context context;
     private static UniversalHelper instance;
 
@@ -27,10 +28,10 @@ public class UniversalHelper {
     }
 
 
-    public void updateApp() {
+    public void updateApp(boolean forceUpdate) {
         try {
             currentVersion = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
-
+            isForceUpdate = forceUpdate;
             Log.e("Current Version", "::" + currentVersion);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -83,8 +84,11 @@ public class UniversalHelper {
                     StrictMode.setThreadPolicy(policy);
 
                     Intent intent = new Intent(context, MainUniversalUpdateActivity.class);
+                    intent.putExtra("isForceUpdate", isForceUpdate);
                     ((Activity) context).startActivity(intent);
-                    ((Activity) context).finish();
+                    if (isForceUpdate) {
+                        ((Activity) context).finish();
+                    }
                 }
 
             }

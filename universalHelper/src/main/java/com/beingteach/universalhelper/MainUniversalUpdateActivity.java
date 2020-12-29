@@ -18,12 +18,15 @@ import android.widget.TextView;
 
 public class MainUniversalUpdateActivity extends AppCompatActivity {
 
+    boolean isForceUpdate;
+    ImageView ivCloseActivity;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_universal_update);
-
+        ivCloseActivity = findViewById(R.id.ivCloseActivity);
         final PackageManager pm = this.getPackageManager();
         ApplicationInfo ai;
         try {
@@ -40,8 +43,25 @@ public class MainUniversalUpdateActivity extends AppCompatActivity {
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
                 } catch (android.content.ActivityNotFoundException anfe) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" +" getPackageName()")));
                 }
+            }
+        });
+
+        if (getIntent() != null) {
+            isForceUpdate = getIntent().getBooleanExtra("isForceUpdate", true);
+            if (isForceUpdate) {
+                ivCloseActivity.setVisibility(View.GONE);
+            } else {
+                ivCloseActivity.setVisibility(View.VISIBLE);
+            }
+        }
+
+
+        ivCloseActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
